@@ -148,7 +148,6 @@ def delete_accounts(id):
     This endpoint will delete an Account
     """
     app.logger.info("Request to delete an Account")
-    check_content_type("application/json")
     account = Account.find(id)
     if account:
         account.delete()
