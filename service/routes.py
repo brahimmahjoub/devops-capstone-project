@@ -141,7 +141,24 @@ def update_accounts(id):
 # DELETE AN ACCOUNT
 ######################################################################
 
-# ... place you code here to DELETE an account ...
+@app.route("/accounts/<id>", methods=["DELETE"])
+def delete_accounts(id):
+    """
+    Delete an Account
+    This endpoint will delete an Account
+    """
+    app.logger.info("Request to delete an Account")
+    check_content_type("application/json")
+    account = Account.find(id)
+    if account:
+        account.delete()
+
+    # Uncomment once get_accounts has been implemented
+    # location_url = url_for("get_accounts", account_id=account.id, _external=True)
+    location_url = "/"  # Remove once get_accounts has been implemented
+    return make_response(
+        "", status.HTTP_204_NO_CONTENT, {"Location": location_url}
+    )
 
 
 ######################################################################
