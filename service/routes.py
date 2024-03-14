@@ -61,7 +61,25 @@ def create_accounts():
 # LIST ALL ACCOUNTS
 ######################################################################
 
-# ... place you code here to LIST accounts ...
+@app.route("/accounts", methods=["GET"])
+def read_all_accounts():
+    """
+    Get All Accounts
+    This endpoint will read all Accounts 
+    """
+    app.logger.info("Request to get all Accounts")
+    accounts = Account.all()
+    messages = []
+    
+    for account in accounts:
+        messages.append(account.serialize())
+
+    # Uncomment once get_accounts has been implemented
+    # location_url = url_for("get_accounts", account_id=account.id, _external=True)
+    location_url = "/"  # Remove once get_accounts has been implemented
+    return make_response(
+        jsonify(messages), status.HTTP_200_OK, {"Location": location_url}
+    )
 
 
 ######################################################################
