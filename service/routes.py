@@ -65,7 +65,7 @@ def create_accounts():
 def read_all_accounts():
     """
     Get All Accounts
-    This endpoint will read all Accounts 
+    This endpoint will read all Accounts
     """
     app.logger.info("Request to get all Accounts")
     accounts = Account.all()
